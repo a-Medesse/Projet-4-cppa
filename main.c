@@ -29,7 +29,28 @@ int case_vide(char grille[3][3]){
 }
 
 
+int verifier_gagnant(char grille[3][3], char symbole) {
+    for (int i = 0; i < 3; i++) {
+        if (grille[i][0] == symbole && grille[i][1] == symbole && grille[i][2] == symbole) {
+            return 1;
+        }
+    }
 
+        for (int j = 0; j < 3; j++) {
+        if (grille[0][j] == symbole && grille[1][j] == symbole && grille[2][j] == symbole) {
+            return 1;
+        }
+    }
+
+        if (grille[0][0] == symbole && grille[1][1] == symbole && grille[2][2] == symbole) {
+        return 1;
+    }
+    if (grille[0][2] == symbole && grille[1][1] == symbole && grille[2][0] == symbole) {
+        return 1;
+    }
+
+    return 0;
+}
 void jouer_partie(char grille[3][3]) {
 
     char joueur[2] = {'A', 'B'};
@@ -60,7 +81,7 @@ void jouer_partie(char grille[3][3]) {
 
                 afficher_grille(grille);
 
-                printf("Le joueur %c a gagné. Félicitations !\n", joueur[i]);
+                printf("Le joueur %c a gagnï¿½. Fï¿½licitations !\n", joueur[i]);
 
                 return;
 
