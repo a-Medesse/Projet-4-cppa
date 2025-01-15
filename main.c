@@ -13,7 +13,47 @@ void initialiser_grille(char grille[3][3] ){
         }
     }
 }
+void choix(char grille[3][3], char symbole) {
 
+    int x, y;
+
+    char buffer[100];
+
+    do {
+
+        printf("Entrez l'abscisse(entre 0, 1 et 2):");
+
+        if(scanf("%d", &x) != 1) {
+
+            printf("Coordonnée non valide. Veuillez réessayer.\n");
+
+            scanf("%s", buffer);
+
+            continue;
+
+        }
+
+        printf("Entrez l'ordonnée(entre 0, 1 et 2):");
+
+        if(scanf("%d", &y) != 1) {
+
+            printf("Coordonnée non valide. Veuillez réessayer.\n");
+
+            scanf("%s", buffer);
+
+            continue;
+
+        }
+
+        if (x<0 || x>2 || y<0 || y>2) {
+
+            printf("Coordonnées non valides. Veuillez réessayer.\n");
+
+        }
+
+        else if(grille[x][y]!=' '){
+
+            printf("Cette case occupée, veuillez réessa…
 void afficher_grille(char grille[3][3]) {
 
     printf("\n 0   1   2 <- colonnes\n");
