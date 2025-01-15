@@ -14,7 +14,29 @@ void initialiser_grille(char grille[3][3] ){
     }
 }
 
+void afficher_grille(char grille[3][3]) {
 
+    printf("\n 0   1   2 <- colonnes\n");
+
+       for (int i = 0; i < 3; i++) {
+
+           printf(" %d |", i);
+
+           for (int j = 0; j < 3; j++) {
+
+               printf(" %c |", grille[i][j]);
+
+           }
+
+           printf("\n  +---+---+---+\n");
+
+       }
+
+       printf("^\n|\nlignes\n");
+
+}
+
+s
 int case_vide(char grille[3][3]){
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
