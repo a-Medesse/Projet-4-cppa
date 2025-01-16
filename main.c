@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Fonction d'initialisation de la grille 
 void initialiser_grille(char grille[3][3] ){
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -13,6 +14,8 @@ void initialiser_grille(char grille[3][3] ){
         }
     }
 }
+
+// Fonction permettant aux joueur de placer leurs pions dans la grille
 void choix(char grille[3][3], char symbole) {
 
     int x, y;
@@ -20,12 +23,12 @@ void choix(char grille[3][3], char symbole) {
     char buffer[100];
 
     do {
-
+// Cas ou le caractere n'est pas un chiffre
         printf("Entrez l'abscisse(entre 0, 1 et 2):");
-
+        
         if(scanf("%d", &x) != 1) {
 
-            printf("Coordonnée non valide. Veuillez réessayer.\n");
+            printf("Coordonnee non valide. Veuillez reessayer.\n");
 
             scanf("%s", buffer);
 
@@ -33,27 +36,36 @@ void choix(char grille[3][3], char symbole) {
 
         }
 
-        printf("Entrez l'ordonnée(entre 0, 1 et 2):");
+        printf("Entrez l'ordonnee(entre 0, 1 et 2):");
 
         if(scanf("%d", &y) != 1) {
 
-            printf("Coordonnée non valide. Veuillez réessayer.\n");
+            printf("Coordonnee non valide. Veuillez reessayer.\n");
 
             scanf("%s", buffer);
 
             continue;
 
         }
-
+// Cas ou le chiffre n'est pas entre 0, 1 et 2
         if (x<0 || x>2 || y<0 || y>2) {
 
-            printf("Coordonnées non valides. Veuillez réessayer.\n");
+            printf("Coordonnees non valides. Veuillez reessayer.\n");
 
         }
-
+// Cas ou la case choisie est deja occupee
         else if(grille[x][y]!=' '){
+            printf("Cette case occupee, veuillez reessayer.\n");
+        }
+        else{
+            break;
+        }
+    } while (1);
+    
+    grille[x][y]=symbole;
+    }
 
-            printf("Cette case occupée, veuillez réessa…
+// Fonction pour l'affichage de la grille
 void afficher_grille(char grille[3][3]) {
 
     printf("\n 0   1   2 <- colonnes\n");
@@ -76,21 +88,19 @@ void afficher_grille(char grille[3][3]) {
 
 }
 
-s
+// Fonction pour verifier s'il y a toujours de case vide pour continuer le jeu
 int case_vide(char grille[3][3]){
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++){
             if (grille[i][j]==' '){
                 return 1;
             }
-
-
         }
     }
     return 0;
 }
 
-
+// Fonction pour verifier si un joueur a gagne
 int verifier_gagnant(char grille[3][3], char symbole) {
     for (int i = 0; i < 3; i++) {
         if (grille[i][0] == symbole && grille[i][1] == symbole && grille[i][2] == symbole) {
@@ -113,6 +123,8 @@ int verifier_gagnant(char grille[3][3], char symbole) {
 
     return 0;
 }
+
+// Fonction pour executer une partie
 void jouer_partie(char grille[3][3]) {
 
     char joueur[2] = {'A', 'B'};
@@ -125,8 +137,6 @@ void jouer_partie(char grille[3][3]) {
 
     printf("Bienvenue dans cette partie de morpion.\nJoueur A (X) \t Joueur B (O)\n");
 
-
-
     while (1) {
 
         for (int i = 0; i < 2; i++) {
@@ -138,18 +148,15 @@ void jouer_partie(char grille[3][3]) {
             choix(grille, symbole[i]);
 
 
-
             if (verifier_gagnant(grille, symbole[i])) {
 
                 afficher_grille(grille);
 
-                printf("Le joueur %c a gagn�. F�licitations !\n", joueur[i]);
+                printf("Le joueur %c a gagne. Felicitations !\n", joueur[i]);
 
                 return;
 
             }
-
-
 
             if (!case_vide(grille)) {
 
